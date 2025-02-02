@@ -1,0 +1,20 @@
+name: Discord notify
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: discord notify
+      run: |
+        curl -H "Content-Type: application/json" -X POST -d '{"content": "🚀 New push detected in the repository! Commit details: ${{ github.actor }} just pushed to ${{ github.ref }}."}' "${{ secrets.my_variable }}"
+ 
